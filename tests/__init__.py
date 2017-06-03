@@ -9,7 +9,7 @@ parent = os.path.dirname(os.path.dirname(
 sys.path.insert(0, parent)
 
 from django.test import TestCase
-from django.template import Template, Context
+from django.template import Template
 from django.core.management import call_command
 from django import forms
 
@@ -42,7 +42,7 @@ class BootstrapTemplateTagTests(TestCase):
     def test_basic_form(self):
         form = ExampleForm()
 
-        html = Template("{% load bootstrap %}{{ form|bootstrap }}").render(Context({'form': form}))
+        html = Template("{% load bootstrap %}{{ form|bootstrap }}").render({'form': form})
 
         tpl = os.path.join('fixtures', 'basic.html')
         with open(os.path.join(TEST_DIR, tpl)) as f:
@@ -53,7 +53,7 @@ class BootstrapTemplateTagTests(TestCase):
     def test_horizontal_form(self):
         form = ExampleForm()
 
-        html = Template("{% load bootstrap %}{{ form|bootstrap_horizontal }}").render(Context({'form': form}))
+        html = Template("{% load bootstrap %}{{ form|bootstrap_horizontal }}").render({'form': form})
 
         tpl = os.path.join('fixtures', 'horizontal.html')
         with open(os.path.join(TEST_DIR, tpl)) as f:
